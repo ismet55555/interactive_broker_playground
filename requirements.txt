@@ -1,5 +1,7 @@
 # Interactive Brokers Python API
 ./ib_python_api
+pandas
+TA-Lib
 
 # Development Tools
 bpython
