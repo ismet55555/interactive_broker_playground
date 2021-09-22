@@ -54,8 +54,9 @@ While the original library is not available in Python, a wrapper is available to
 - Orders
     - [Available Orders](https://interactivebrokers.github.io/tws-api/available_orders.html)
     - [Order Managment](https://interactivebrokers.github.io/tws-api/order_management.html)
-    
 
+- Message Codes
+    - [Message Codes](https://interactivebrokers.github.io/tws-api/message_codes.html)
 
 ## Links
 

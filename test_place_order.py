@@ -35,6 +35,10 @@ class IBapi(EWrapper, EClient):
     # 	super().error(reqId, errorCode, errorString)
     # 	print("Error. Id:", reqId, "Code:", errorCode, "Msg:", errorString)
 
+    def error(self, reqId, errorCode, errorString):
+        if errorCode == 202:
+            print('Order canceled!') 
+
 
 def run_loop():
     app.run()
