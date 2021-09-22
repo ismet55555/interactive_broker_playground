@@ -1,12 +1,11 @@
-from ibapi.client import EClient
-from ibapi.common import MarketDataTypeEnum
-from ibapi.wrapper import EWrapper
-from ibapi.contract import Contract
-
-from prettyprinter import cpprint
-
 import threading
 import time
+
+from ibapi.client import EClient
+from ibapi.common import MarketDataTypeEnum
+from ibapi.contract import Contract
+from ibapi.wrapper import EWrapper
+from prettyprinter import cpprint
 
 
 class IBapi(EWrapper, EClient):

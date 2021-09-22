@@ -1,11 +1,11 @@
-from ibapi.client import EClient
-from ibapi.wrapper import EWrapper
-from ibapi.contract import Contract
-from ibapi.order import Order
-from ibapi.common import TickerId
-
 import threading
 import time
+
+from ibapi.client import EClient
+from ibapi.common import TickerId
+from ibapi.contract import Contract
+from ibapi.order import Order
+from ibapi.wrapper import EWrapper
 
 
 class IBapi(EWrapper, EClient):

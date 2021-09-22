@@ -1,12 +1,11 @@
-from ibapi.client import EClient
-from ibapi.wrapper import EWrapper
-from ibapi.contract import Contract
-from ibapi.common import BarData
-
-from prettyprinter import cpprint
-
 import threading
 import time
+
+from ibapi.client import EClient
+from ibapi.common import BarData
+from ibapi.contract import Contract
+from ibapi.wrapper import EWrapper
+from prettyprinter import cpprint
 
 
 class IBapi(EWrapper, EClient):
