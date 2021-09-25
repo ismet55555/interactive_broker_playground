@@ -20,7 +20,7 @@ class IBapi(EWrapper, EClient):
         # print("HistoricalData. ", reqId, " Date:", bar.date, "Open:", bar.open, "High:", bar.high, "Low:", bar.low, "Close:", bar.close, "Volume:", bar.volume, "Count:", bar.barCount, "WAP:", bar.average)
 
 
-def run_loop():
+def thread_run_loop():
     app.run()
 
 
@@ -28,7 +28,7 @@ app = IBapi()
 app.connect('127.0.0.1', 7497, 123)
 
 #Start the socket in a thread
-api_thread = threading.Thread(target=run_loop, daemon=True)
+api_thread = threading.Thread(target=thread_run_loop, daemon=True)
 api_thread.start()
 
 time.sleep(1)  #Sleep interval to allow time for connection to server

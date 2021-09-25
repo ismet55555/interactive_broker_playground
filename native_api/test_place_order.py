@@ -9,25 +9,26 @@ from ibapi.wrapper import EWrapper
 
 
 class IBapi(EWrapper, EClient):
+    """Class handling all outgoing requests and incoming responses"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         EClient.__init__(self, self)
 
-    def nextValidId(self, orderId: int):
+    def nextValidId(self, orderId: int) -> None:
         super().nextValidId(orderId)
         self.nextorderId = orderId
         print('The next valid order id is: ', self.nextorderId)
 
     def orderStatus(self, orderId, status, filled, remaining, avgFullPrice, permId, parentId, lastFillPrice, clientId,
-                    whyHeld, mktCapPrice):
+                    whyHeld, mktCapPrice) -> None:
         print('orderStatus - orderid:', orderId, 'status:', status, 'filled', filled, 'remaining', remaining,
               'lastFillPrice', lastFillPrice)
 
-    def openOrder(self, orderId, contract, order, orderState):
+    def openOrder(self, orderId, contract, order, orderState) -> None:
         print('openOrder id:', orderId, contract.symbol, contract.secType, '@', contract.exchange, ':', order.action,
               order.orderType, order.totalQuantity, orderState.status)
 
-    def execDetails(self, reqId, contract, execution):
+    def execDetails(self, reqId, contract, execution) -> None:
         print('Order Executed: ', reqId, contract.symbol, contract.secType, contract.currency, execution.execId,
               execution.orderId, execution.shares, execution.lastLiquidity)
 
@@ -35,12 +36,16 @@ class IBapi(EWrapper, EClient):
     # 	super().error(reqId, errorCode, errorString)
     # 	print("Error. Id:", reqId, "Code:", errorCode, "Msg:", errorString)
 
-    def error(self, reqId, errorCode, errorString):
+    def error(self, reqId, errorCode, errorString) -> None:
+        """Error behavior"""
         if errorCode == 202:
-            print('Order canceled!') 
+            print('Order canceled!')
 
 
-def run_loop():
+####################################################################
+
+
+def thread_run_loop():
     app.run()
 
 
@@ -50,12 +55,12 @@ app.connect('127.0.0.1', 7497, 123)
 app.nextorderId = None
 
 #Start the socket in a thread
-api_thread = threading.Thread(target=run_loop, daemon=True)
+api_thread = threading.Thread(target=thread_run_loop, daemon=True)
 api_thread.start()
 
-####################################################################
-
-# Check if the API is connected via orderid - Waiting for API to send over the nextorderid
+# Check if the API is connected via orderid
+# Waiting for API to send over the nextorderid
+#   - Replaces straight time.sleep()
 while True:
     if isinstance(app.nextorderId, int):
         print('API is Connected')
@@ -84,19 +89,26 @@ order.totalQuantity = 20000
 order.orderType = 'LMT'
 order.lmtPrice = '1.10'
 
-# Place the order
+# Place the order for specified contract
 print('Placing order ...')
 app.placeOrder(app.nextorderId, FX_order('EURUSD'), order)
-# app.nextorderId += 1  # Increment orderId for next order (if needed)
 
-# Wait some time to process
+# Increment orderId for next order if doing subsequent orders
+# app.nextorderId += 1
+
+# Wait some time for order to process
 time.sleep(3)
-
-# Cancel the last order
-print('Cancelling order ...')
-app.cancelOrder(app.nextorderId)
 
 ####################################################################
 
+# Cancel the last order
+# NOTE: If order was incremented, it should be `app.nextorderId - 1`
+print('Cancelling order ...')
+app.cancelOrder(app.nextorderId)
+
+# Wait some time for order to cancel
 time.sleep(3)
+
+####################################################################
+
 app.disconnect()

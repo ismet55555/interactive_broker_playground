@@ -1,27 +1,52 @@
 # interactive_broker_playground
-Just testing things out with interactive broker API
 
+In this repository we are simply playing around with the Interactive Brokers API
 
-## Installation and Setup
+# Repo Setup
 
-### Interactive Broker TWS
+This repository is divided into two sections.
 
-- Download, install, run, and log-in
-    - https://www.interactivebrokers.com/en/index.php?f=16042
+1. Native API Scripts (`native_api`)
 
-- Change Settings
-    - File > Global Configuration > API > Settings
-    - Check: `Enable ActiveX and Socket Clients`
-    - Uncheck: `Read-Only API`
-    - Ensure: `Socket port: 7497`
-    - Check: `Allow connections form localhost only` *(Uncheck if connecting from remote computer)*
+   - This library is developed and maintained by Interactive Brokers
+   - It is downloaded via the Interactive Brokers website and installed manually
+   - Documentation: https://interactivebrokers.github.io/tws-api/index.html
 
-### Python Tools
-1. `python3 -m venv env`
-2. `source env/bin/activate`
-3. `pip install -r requirements.txt`
+2. `ib_insync`
+   - This library is a wrapper on the native interactive broker API
+   - It makes working with the native library easier and asynchronous
+   - GitHub Repo: https://github.com/erdewit/ib_insync
 
-### [Optional] TA-Lib Market Analysis Tool
+# Installation and Setup
+
+### Interactive Broker Trader Workstation (TWS)
+
+In order to use any code that interacts with the interactive broker servers, a local client has to be installed.
+This local client can either be the TWS or the Interactive Broker Gateway.
+
+- TWS: Download, install, run, and log-in
+
+  - https://www.interactivebrokers.com/en/index.php?f=16042
+
+- TWS: Change Settings
+  - File > Global Configuration > API > Settings
+  - Check: `Enable ActiveX and Socket Clients`
+  - Uncheck: `Read-Only API`
+  - Ensure: `Socket port: 7497`
+  - Check: `Allow connections form localhost only` _(Uncheck if connecting from remote computer)_
+
+# Market/Data Analysis Tools
+
+Interactive brokers API is great for getting data and managing orders, however for any data or market analysis another tools needed. The following tools enable any technical analysis.
+
+#### Stockstats
+
+A open-source technical analysis tool for python.
+
+- GitHub Repo: https://github.com/jealous/stockstats
+- `pip install stockstats`
+
+#### TA-Lib Market Analysis Tool
 
 TA-Lib is an open-source technical analysis toolkit. See [home page](https://ta-lib.org/).
 While the original library is not available in Python, a wrapper is available to allow Python users access.
@@ -30,46 +55,58 @@ While the original library is not available in Python, a wrapper is available to
 - Follow instructions how to download compressed file and build from source
 - `pip install ta-lib`
 
+#### Bta-Lib Market Analysis Tool
 
-## Notes
+- GitHub Repo: https://github.com/mementum/bta-lib
+- Website: https://btalib.backtrader.com/
+- `pip install bta-lib`
+
+# NOTES
 
 - Connection
-    - `Python API -> TWS/Gateway Client -> Interactive Broker Servers`
+
+  - `Python API -> TWS/Gateway Client -> Interactive Broker Servers`
 
 - Python Script Communication
-    - Outgoing: `Python Script -> EClient -> TWS/Gateway Client`
-    - Incoming: `Python Script <- EWrapper <- TWS/Gateway Client`
 
-- [Available Tick Types](https://interactivebrokers.github.io/tws-api/tick_types.html)
-- [Market Data Types](https://interactivebrokers.github.io/tws-api/market_data_type.html)
+  - Outgoing: `Python Script -> EClient -> TWS/Gateway Client`
+  - Incoming: `Python Script <- EWrapper <- TWS/Gateway Client`
 
-- Historical Data
+- P1L0veTorontoUrenan823
+
+# Links
+
+- Native Python API
+
+  - [Tutorial](https://algotrading101.com/learn/interactive-brokers-python-api-native-guide/)
+  - [Available Tick Types](https://interactivebrokers.github.io/tws-api/tick_types.html)
+  - [Market Data Types](https://interactivebrokers.github.io/tws-api/market_data_type.html)
+
+  - Historical Data
+
     - [Requesting Historical Bar Data](https://interactivebrokers.github.io/tws-api/historical_bars.html)
     - [Historical Data Limitations](https://interactivebrokers.github.io/tws-api/historical_limitations.html)
     - Examples:
-        - [Get Historical Data - Github Gist](https://gist.github.com/robcarver17/f50aeebc2ecd084f818706d9f05c1eb4#file-temp-py)
-        - [CLI to Download Historical Data - GitHub Gist](https://gist.github.com/wrighter/dd201adb09518b3c1d862255238d2534)
-        - [Receiving Market Data and Historical Candlesticks](https://tradersacademy.online/trading-topics/trader-workstation-tws/receiving-market-data-and-historical-candlesticks)
+      - [Get Historical Data - Github Gist](https://gist.github.com/robcarver17/f50aeebc2ecd084f818706d9f05c1eb4#file-temp-py)
+      - [CLI to Download Historical Data - GitHub Gist](https://gist.github.com/wrighter/dd201adb09518b3c1d862255238d2534)
+      - [Receiving Market Data and Historical Candlesticks](https://tradersacademy.online/trading-topics/trader-workstation-tws/receiving-market-data-and-historical-candlesticks)
 
-- Orders
+  - Orders
+
     - [Available Orders](https://interactivebrokers.github.io/tws-api/available_orders.html)
     - [Order Managment](https://interactivebrokers.github.io/tws-api/order_management.html)
 
-- Message Codes
+  - Message Codes
     - [Message Codes](https://interactivebrokers.github.io/tws-api/message_codes.html)
 
-## Links
-
-- Native Python API
-    - [Tutorial](https://algotrading101.com/learn/interactive-brokers-python-api-native-guide/)
-
 - `ib_insync` Python Library
-    - [GitHub Repo](https://github.com/erdewit/ib_insync)
-    - [Tutorial](https://algotrading101.com/learn/ib_insync-interactive-brokers-api-guide/)
-    - Details:
-        - Utilizes asynchronous methods to communicate with the native API to increase efficiency.
-        - Utilizes the asyncio library to provide an asynchronous single thread to interact with the API
-        - Simplifies the process of receiving data from the API.
+
+  - [Tutorial](https://algotrading101.com/learn/ib_insync-interactive-brokers-api-guide/)
+  - Details:
+    - Utilizes asynchronous methods to communicate with the native API to increase efficiency.
+    - Utilizes the asyncio library to provide an asynchronous single thread to interact with the API
+    - Simplifies the process of receiving data from the API.
 
 - `IbPy` Python Library
-    - [GitHub Repo](https://github.com/blampe/IbPy)
+  - Another library and a wrapper of the Interactive Broker API
+  - [GitHub Repo](https://github.com/blampe/IbPy)

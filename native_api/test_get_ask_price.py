@@ -18,7 +18,7 @@ class IBapi(EWrapper, EClient):
             print('The current ask price is: ', price)
 
 
-def run_loop():
+def thread_run_loop():
     app.run()
 
 
@@ -26,7 +26,7 @@ app = IBapi()
 app.connect('127.0.0.1', 7497, 123)
 
 #Start the socket in a thread
-api_thread = threading.Thread(target=run_loop, daemon=True)
+api_thread = threading.Thread(target=thread_run_loop, daemon=True)
 api_thread.start()
 
 time.sleep(1)  #Sleep interval to allow time for connection to server
