@@ -39,14 +39,14 @@ This local client can either be the TWS or the Interactive Broker Gateway.
 
 Interactive brokers API is great for getting data and managing orders, however for any data or market analysis another tools needed. The following tools enable any technical analysis.
 
-#### Stockstats
+### Stockstats
 
 A open-source technical analysis tool for python.
 
 - GitHub Repo: https://github.com/jealous/stockstats
 - `pip install stockstats`
 
-#### TA-Lib Market Analysis Tool
+### TA-Lib Market Analysis Tool
 
 TA-Lib is an open-source technical analysis toolkit. See [home page](https://ta-lib.org/).
 While the original library is not available in Python, a wrapper is available to allow Python users access.
@@ -55,7 +55,7 @@ While the original library is not available in Python, a wrapper is available to
 - Follow instructions how to download compressed file and build from source
 - `pip install ta-lib`
 
-#### Bta-Lib Market Analysis Tool
+### Bta-Lib Market Analysis Tool
 
 - GitHub Repo: https://github.com/mementum/bta-lib
 - Website: https://btalib.backtrader.com/
