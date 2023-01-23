@@ -65,12 +65,27 @@ While the original library is not available in Python, a wrapper is available to
 
 - Connection
 
-  - `Python API -> TWS/Gateway Client -> Interactive Broker Servers`
+  - `Python API <-> TWS/Gateway Client <-> Interactive Broker Servers`
 
 - Python Script Communication
 
   - Outgoing: `Python Script -> EClient -> TWS/Gateway Client`
   - Incoming: `Python Script <- EWrapper <- TWS/Gateway Client`
+
+- Sector Types
+  - 'STK' = Stock (or ETF)
+  - 'OPT' = Option
+  - 'FUT' = Future
+  - 'IND' = Index
+  - 'FOP' = Futures option
+  - 'CASH' = Forex pair
+  - 'CFD' = CFD
+  - 'BAG' = Combo
+  - 'WAR' = Warrant
+  - 'BOND'= Bond
+  - 'CMDTY'= Commodity
+  - 'NEWS' = News
+  - 'FUND'= Mutual fund
 
 - P1L0veTorontoUrenan823
 
@@ -101,11 +116,16 @@ While the original library is not available in Python, a wrapper is available to
 
 - `ib_insync` Python Library
 
-  - [Tutorial](https://algotrading101.com/learn/ib_insync-interactive-brokers-api-guide/)
   - Details:
     - Utilizes asynchronous methods to communicate with the native API to increase efficiency.
     - Utilizes the asyncio library to provide an asynchronous single thread to interact with the API
     - Simplifies the process of receiving data from the API.
+  - [Tutorial](https://algotrading101.com/learn/ib_insync-interactive-brokers-api-guide/)
+  - [Code Recipes](https://github.com/erdewit/ib_insync/blob/master/docs/recipes.rst)
+  - [Tkinter UI Example](https://github.com/erdewit/ib_insync/blob/master/examples/tk.py)
+  - [Market Scanner Examples](https://groups.io/g/insync/topic/market_data_scanners/22402297?p=,,,20,0,0,0::recentpostdate/sticky,,,20,2,0,22402297,previd=9223372036854775807,nextid=1630545430030066183&previd=9223372036854775807&nextid=1630545430030066183)
+  - [Examples](https://market-and-us.com/blog/how-to-code-all-about-orders-with-interactive-brokers-475/)
+  - [Presentation for Jupyter Notebook](https://www.palmislandtraders.com/econ136/ib_api.pdf)
 
 - `IbPy` Python Library
   - Another library and a wrapper of the Interactive Broker API
